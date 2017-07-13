@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-function createReview(db) {     
+function createReview( db ) {
      const Review = db.define('review', {
           original: {
                type: Sequelize.TEXT,
