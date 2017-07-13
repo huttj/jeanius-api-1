@@ -1,0 +1,31 @@
+{
+     "name": "jeanius-api",
+     "version": "1.0.0",
+     "description": "Jean Recommender API",
+     "main": "index.js",
+     "scripts": {
+          "start": "nodemon ./bin/www"
+     },
+     "repository": {
+          "type": "git",
+          "url": "git+https://github.com/janicewilson/jeanius-api.git"
+     },
+     "keywords": [],
+     "author": "",
+     "license": "ISC",
+     "bugs": {
+          "url": "https://github.com/janicewilson/jeanius-api/issues"
+     },
+     "homepage": "https://github.com/janicewilson/jeanius-api#readme",
+     "dependencies": {
+          "body-parser": "^1.17.2",
+          "express": "^4.15.3",
+          "morgan": "^1.8.2",
+          "pg": "^6.4.0",
+          "pg-hstore": "^2.3.2",
+          "sequelize": "^4.3.1"
+     },
+     "devDependencies": {
+          "nodemon": "^1.11.0"
+     }
+}
