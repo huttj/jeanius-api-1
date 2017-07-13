@@ -1,0 +1,23 @@
+{
+     "development": {
+          "username": "janice",
+          "password": null,
+          "database": "jeaniusdb",
+          "host": "127.0.0.1",
+          "dialect": "postgres"
+     },
+     "test": {
+          "username": "janice",
+          "password": null,
+          "database": "jeaniusdb",
+          "host": "127.0.0.1",
+          "dialect": "postgres"
+     },
+     "production": {
+          "username": "janice",
+          "password": null,
+          "database": "jeaniusdb",
+          "host": "127.0.0.1",
+          "dialect": "postgres"
+     }
+}
