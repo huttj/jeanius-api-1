@@ -8,4 +8,5 @@ module.exports = ( app ) => {
 
      app.post( '/api/jeans', jeansController.create );
      app.post( '/api/jeans/:jeanAsin/reviews', reviewsController.create );
+     app.get( '/api/jeans', jeansController.list );
 };

@@ -1,4 +1,5 @@
 const Jean = require( '../models' ).Jean;
+const Review = require( '../models' ).Review;
 
 module.exports = {
      create(req, res) {
@@ -17,6 +18,13 @@ module.exports = {
                description: req.body.description,
           })
           .then( jean => res.status( 201 ).send( jean ))
+          .catch( error => res.status( 400 ).send( error.toString() ));
+     },
+
+     list( req, res ) {
+          return Jean
+          .findAll({ include: [Review] })
+          .then( jeans => res.send( jeans ))
           .catch( error => res.status( 400 ).send( error.toString() ));
      },
 };
