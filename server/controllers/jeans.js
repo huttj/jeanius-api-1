@@ -17,6 +17,6 @@ module.exports = {
                description: req.body.description,
           })
           .then( jean => res.status( 201 ).send( jean ))
-          .catch( error => res.status( 400 ).send( error ));
+          .catch( error => res.status( 400 ).send( error.toString() ));
      },
 };

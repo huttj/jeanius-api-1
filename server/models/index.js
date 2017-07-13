@@ -20,6 +20,10 @@ if ( config.use_env_variable ) {
 }
 
 db.Jean = Jean(db.sequelize);
+db.Review = Review(db.sequelize);
+
+Jean.associate(db);
+Review.associate(db);
 
 db.sequelize.sync();
 
