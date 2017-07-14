@@ -21,10 +21,66 @@ module.exports = {
           .catch( error => res.status( 400 ).send( error.toString() ));
      },
 
-     list( req, res ) {
+     index( req, res ) {
           return Jean
-          .findAll({ include: [Review] })
+          .findAll({ include: [ Review ] })
           .then( jeans => res.send( jeans ))
           .catch( error => res.status( 400 ).send( error.toString() ));
+     },
+
+     show( req, res ) {
+          return Jean
+          .findById(req.params.asin, {
+               include: [ Review ],
+          })
+          .then( jean => {
+               if ( !jean ) {
+                    return res.status(404).send({
+                         message: 'Damn. We have that pair of jeans.',
+                    });
+               }
+               return res.status(200).send( jean );
+               })
+               .catch(error => res.status(400).send( error.toString() ));
+     },
+
+     update( req, res ) {
+          return Jean
+          .findById(req.params.asin, {
+               include: [ Review ],
+          })
+          .then( jean => {
+               if ( !jean ) {
+                    return res.status(404).send({
+                         message: 'Damn. We haven\'t that pair of jeans.',
+                    });
+               }
+               return jean
+               .update({
+                    url: req.body.url || jean.url,
+               })
+               .then(() => res.status( 200 ).send( jean ))
+               .catch(( error ) => res.status( 400 ).send( error ));
+               })
+          .catch(( error ) => res.status( 400 ).send( error.toString() ));
+     },
+
+     destroy( req, res ) {
+          return Jean
+          .findById(req.params.asin, {
+               include: [ Review ],
+          })
+          .then( jean => {
+               if ( !jean ) {
+                    return res.status( 400 ).send({
+                         message: 'Damn. We haven\'t that pair of jeans.',
+                    });
+          }
+          return jean
+          .destroy()
+          .then(() => res.status(200).send({ message: 'The offending pair of jeans has been destroyed.' }))
+          .catch(error => res.status( 400 ).send( error.toString() ));
+          })
+          .catch(error => res.status( 400 ).send( error.toString() ));
      },
 };
