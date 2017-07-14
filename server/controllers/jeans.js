@@ -36,7 +36,7 @@ module.exports = {
           .then( jean => {
                if ( !jean ) {
                     return res.status(404).send({
-                         message: 'Damn. We have that pair of jeans.',
+                         message: 'Damn. We haven\'t that pair of jeans.',
                     });
                }
                return res.status(200).send( jean );
@@ -56,9 +56,7 @@ module.exports = {
                     });
                }
                return jean
-               .update({
-                    url: req.body.url || jean.url,
-               })
+               .update( req.body, { fields: Object.keys(req.body) })
                .then(() => res.status( 200 ).send( jean ))
                .catch(( error ) => res.status( 400 ).send( error ));
                })

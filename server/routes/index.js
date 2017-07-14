@@ -6,8 +6,11 @@ module.exports = ( app ) => {
           message: 'Welcome to the most Jeanius API on the interwebs.',
      }));
 
-     app.post( '/api/jeans', jeansController.create );
+     app.get( '/api/reviews/:id', reviewsController.show );
+     app.get( '/api/reviews', reviewsController.index );
      app.post( '/api/jeans/:jeanAsin/reviews', reviewsController.create );
+     app.put( '/api/reviews/:id', reviewsController.update );
+     app.delete( '/api/reviews/:id', reviewsController.destroy );
 
      app.get( '/api/jeans/:asin', jeansController.show );
      app.get( '/api/jeans', jeansController.index );
