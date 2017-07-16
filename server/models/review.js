@@ -29,7 +29,7 @@ function createReview( db ) {
                allowNull: false,
                defaultValue: 0,
           },
-          inseam: Sequelize.INTEGER,
+          inseam: Sequelize.STRING,
           date_submitted: Sequelize.STRING,
      });
 

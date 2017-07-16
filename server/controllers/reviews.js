@@ -18,6 +18,23 @@ module.exports = {
           .catch( error => res.status( 400 ).send( error ));
      },
 
+     query( req, res ) {
+          var heightPriority = req.query.heightPriority;
+          var weightPriorty = req.query.weightPriority;
+
+          return Review          
+          .findAll({
+               where: {
+                    height: req.query.height,
+                    weight: req.query.weight,
+                    shape: req.query.shape
+               },
+               include: [ Jean ]
+          })
+          .then( reviews => res.send( reviews ))
+          .catch( error => res.status( 400 ).send( error.toString() ));
+     },
+
      index( req, res ) {
           return Review
           .findAll({ include: [ Jean ] })
