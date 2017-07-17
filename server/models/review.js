@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-
-function createReview( db ) {
+var createReview = db => {
      const Review = db.define('review', {
           original: {
                type: Sequelize.TEXT,
@@ -44,7 +43,7 @@ function createReview( db ) {
      return Review;
 }
 
-createReview.associate = function ( db ) {
+createReview.associate =  db  => {
      db.Review.belongsTo( db.Jean );
 };
 

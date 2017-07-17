@@ -1,6 +1,6 @@
 const Sequelize = require( 'sequelize' );
 
-function createJean( db ) {
+var createJean =  db  => {
      const Jean = db.define( 'jean', {
           asin: {
                type: Sequelize.STRING,
@@ -54,7 +54,7 @@ function createJean( db ) {
           return Jean;
 
 }
-createJean.associate = function ( db ) {
+createJean.associate = ( db ) => {
      db.Jean.hasMany( db.Review );
 };
 

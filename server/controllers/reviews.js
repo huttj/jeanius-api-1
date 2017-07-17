@@ -1,5 +1,7 @@
 const Review = require('../models').Review;
 const Jean = require('../models').Jean;
+const recommendJeans = require('../algorithms/recommender');
+
 
 module.exports = {
      create( req, res ) {
@@ -18,18 +20,18 @@ module.exports = {
           .catch( error => res.status( 400 ).send( error ));
      },
 
-     // query( req, res ) {
-     //      let stats = {};
-     //      const stats.height = req.query.height
-     //      const stats.heightPriority = req.query.heightPriority;
-     //      const stats.weight = req.query.weight
-     //      const stats.weightPriorty = req.query.weightPriority;
-     //      const stats.shape = req.query.weight
-     //      return Review
-     //      models = .findAll({ include: [ Jean ]})
-     //      .then( reviews => res.send( recommendJeans (stats, models) ))
-     //      .catch( error => res.status( 400 ).send( error.toString() ));
-     // },
+     query( req, res ) {
+          const stats = {};
+          stats.height = req.query.height
+          stats.heightPriority = req.query.heightPriority;
+          stats.weight = req.query.weight
+          stats.weightPriority = req.query.weightPriority;
+          stats.shape = req.query.shape;
+          return Review
+          .findAll({ include: [Jean] })
+          .then( reviews => res.send( recommendJeans( stats, reviews )))
+          .catch( error => res.status(400).send(error.toString() ));
+     },
 
      index( req, res ) {
           return Review

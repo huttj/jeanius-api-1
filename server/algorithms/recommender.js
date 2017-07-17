@@ -1,153 +1,3 @@
-import axios from 'axios';
-
-var reviews = [
-     {
-          'asin': '1', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 5, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '2', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '3', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '4', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '4', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '3', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '1', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 5, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '2', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '3', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '4', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '3', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '5', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '6', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '8', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '5', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '6', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '8', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '6', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '8', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '9', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '10', 'size': '4', 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '11', 'size': '2', 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '12', 'size': '4', 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '13', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '14', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '15', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '16', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '17', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '18', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 125, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '6', 'size': 6, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 60, 'weight': 130, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 65, 'weight': 128, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '7', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 61, 'weight': 130, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '8', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 64, 'weight': 128, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '9', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 59, 'weight': 130, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '10', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 68, 'weight': 128, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '11', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 60, 'weight': 128, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '12', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 58, 'weight': 128, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '19', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 124, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '20', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 62, 'weight': 126, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '21', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 130, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '22', 'size': 2, 'inseam': 31, 'date': '', 'review': '', 'rating': 5,'date': '', 'height': 63, 'weight': 120, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '23', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 139, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '23', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 140, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-     {
-          'asin': '23', 'size': 4, 'inseam': 31, 'date': '', 'review': '', 'rating': 4,'date': '', 'height': 63, 'weight': 141, 'shape': 6, 'photos': ['url','url', 'url']
-     },
-
-];
-
 var determineHeight = ( priority, height ) => {
      var heightRange = [];
      var length = 0;
@@ -174,6 +24,7 @@ var determineHeight = ( priority, height ) => {
 
      length = heightRange[1] - heightRange[0];
      start = heightRange[0]
+
      return range = Array.from(new Array( length + 1 ), ( x,i ) => i + start)
 };
 
@@ -223,26 +74,26 @@ var determineShape = ( shape ) =>  {
      return range = Array.from(new Array( length + 1 ), ( x,i ) => i + start);
 };
 
-var findJeans = ( reviews, rating, stats, determineHeight, determineWeight, determineShape ) => {
+var findJeans = ( queriedReviews, rating, stats, determineHeight, determineWeight, determineShape ) => {
 
-     var height = determineHeight( stats.height[0], stats.height[1] );
-     var weight = determineWeight( stats.weight[0], stats.weight[1] );
-     var shape = determineShape( stats.shape );
+     var height = determineHeight( parseInt( stats.heightPriority ), parseInt( stats.height ));
+     var weight = determineWeight( parseInt( stats.weightPriority ), parseInt( stats.weight ));
+     var shape = determineShape( parseInt( stats.shape ))
 
-
-     return reviews.filter(( review ) => {
-          return review.rating == rating
-          && height.includes( review.height )
-          && weight.includes( review.weight )
-          && shape.includes( review.shape )
+     return queriedReviews.filter(( queriedReview ) => {
+          return queriedReview.rating == rating
+          && height.includes( queriedReview.height )
+          && weight.includes( queriedReview.weight )
+          && shape.includes( queriedReview.shape )
      });
 };
 
 var groupJeans = foundJeans => {
-     console.log(foundJeans.length);
+     console.log( 'groupJeans: We made it!' );
+
      return foundJeans.reduce(( count, jeans ) => {
           var array = [
-               ['asin', jeans.asin],
+               ['jean_asin', jeans.jean_asin],
                ['size', jeans.size],
                ['inseam', jeans.inseam]
           ];
@@ -265,7 +116,7 @@ var scoreJeans = ( groupedJeans, numScoredJeans, scoredJeans, rating ) => {
           }
 
           var object = {
-               'asin': scored[1],
+               'jean_asin': scored[1],
                'size': scored[3],
                'inseam': scored[5],
                'mentions': scored[7],
@@ -273,7 +124,7 @@ var scoreJeans = ( groupedJeans, numScoredJeans, scoredJeans, rating ) => {
           };
 
           var index = scoredJeans.findIndex( i =>
-               i.asin === object.asin &&
+               i.jean_asin === object.jean_asin &&
                i.size === object.size &&
                i.inseam === object.inseam
           );
@@ -294,21 +145,24 @@ var sortJeans = scoredJeans => {
      });
 }
 
-module.exports = {
-     recommendedJeans: ( stats ) => {
-          var foundJeans = [], groupedJeans = [], scoredJeans = [], numScoredJeans = [], sortedJeans = [];
+var recommendJeans = ( stats, reviews ) => {
+     var queriedReviews = [], foundJeans = [], groupedJeans = [], scoredJeans = [], numScoredJeans = [], sortedJeans = [];
+     var rating = 5;
 
-          var rating = 5;
-
-          while ( rating > 3 ) {
-
-               foundJeans = findJeans( reviews, rating, stats, determineHeight, determineWeight, determineShape);
-               groupedJeans = groupJeans( foundJeans );
-               scoredJeans = scoreJeans( groupedJeans, numScoredJeans, scoredJeans, rating );
-               sortedJeans = sortJeans(scoredJeans)
-
-               --rating;
-          }
-          return sortedJeans;
+     for ( var i = 0; i < reviews.length; i++ ) {
+          queriedReviews.push(reviews[i]['dataValues'])
      }
+
+     while ( rating > 3 ) {
+
+          foundJeans = findJeans( queriedReviews, rating, stats, determineHeight, determineWeight, determineShape);
+          groupedJeans = groupJeans( foundJeans );
+          scoredJeans = scoreJeans( groupedJeans, numScoredJeans, scoredJeans, rating );
+          sortedJeans = sortJeans(scoredJeans)
+
+          --rating;
+     }
+     return sortedJeans;
 }
+
+module.exports = recommendJeans;
