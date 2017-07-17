@@ -46,11 +46,16 @@ function createJean( db ) {
           description: Sequelize.TEXT,
           });
 
-     return Jean;
+          Jean.associate = models => {
+               Jean.hasMany(models.Review, {
+                    foreignKey: 'jean_asin',
+               });
+          }
+          return Jean;
 
 }
 createJean.associate = function ( db ) {
-     db.Jean.hasMany( db.Review, { onDelete: 'CASCADE' } );
+     db.Jean.hasMany( db.Review );
 };
 
 module.exports = createJean;

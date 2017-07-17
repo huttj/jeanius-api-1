@@ -33,6 +33,14 @@ function createReview( db ) {
           date_submitted: Sequelize.STRING,
      });
 
+     Review.associate = models => {
+          Review.belongsTo(models.Jean, {
+               foreignKey: 'jean_asin',
+               targetKey: 'asin',
+               onDelete: 'CASCADE',
+          })
+     }
+
      return Review;
 }
 

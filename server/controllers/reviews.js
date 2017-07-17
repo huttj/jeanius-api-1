@@ -12,28 +12,24 @@ module.exports = {
                weight: req.body.weight,
                shape: req.body.shape,
                inseam: req.body.inseam,
-               jeanAsin: req.params.jeanAsin,
+               jean_asin: req.params.jeanAsin,
           })
           .then( review => res.status( 201 ).send( review ))
           .catch( error => res.status( 400 ).send( error ));
      },
 
-     query( req, res ) {
-          var heightPriority = req.query.heightPriority;
-          var weightPriorty = req.query.weightPriority;
-
-          return Review          
-          .findAll({
-               where: {
-                    height: req.query.height,
-                    weight: req.query.weight,
-                    shape: req.query.shape
-               },
-               include: [ Jean ]
-          })
-          .then( reviews => res.send( reviews ))
-          .catch( error => res.status( 400 ).send( error.toString() ));
-     },
+     // query( req, res ) {
+     //      let stats = {};
+     //      const stats.height = req.query.height
+     //      const stats.heightPriority = req.query.heightPriority;
+     //      const stats.weight = req.query.weight
+     //      const stats.weightPriorty = req.query.weightPriority;
+     //      const stats.shape = req.query.weight
+     //      return Review
+     //      models = .findAll({ include: [ Jean ]})
+     //      .then( reviews => res.send( recommendJeans (stats, models) ))
+     //      .catch( error => res.status( 400 ).send( error.toString() ));
+     // },
 
      index( req, res ) {
           return Review
