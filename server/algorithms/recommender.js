@@ -164,16 +164,33 @@ var recommendJeans = ( stats, reviews ) => {
           --rating;
      }
 
-     recommendedJeans = sortedJeans.forEach( sortedJean  => {
-          return Jean
-          .findById( sortedJean.jean_asin, {
-               include: [ Review ],
-          })
-          .then( jean => {
-               return jean })
-     });
+     var recommendedAsins = sortedJeans.map( jean => jean.jean_asin )
 
-     return recommendedJeans;
+     return Jean
+     .findAll({
+          where: {
+               asin: {
+                    $in: recommendedAsins
+               }
+          }
+     })
+     .then( jeans => {
+          recommendedJeans = sortedJeans.map( sortedJean => {
+               var packagedJeans = {};
+               jeans.forEach( jean => {
+                    if ( jean['dataValues']['asin'] === sortedJean.jean_asin ) {
+                         packagedJeans.jean = jean;
+                    }
+               })
+               packagedJeans.size = sortedJean.size;
+               packagedJeans.inseam = sortedJean.inseam;
+               packagedJeans.mentions = sortedJean.mentions;
+               packagedJeans.stars = sortedJean.stars;
+
+               return packagedJeans;
+          })
+          return recommendedJeans;
+     })
 }
 
 module.exports = recommendJeans;

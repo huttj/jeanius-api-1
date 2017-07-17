@@ -29,7 +29,10 @@ module.exports = {
           stats.shape = req.query.shape;
           return Review
           .findAll({ include: [Jean] })
-          .then( reviews => res.send( recommendJeans( stats, reviews )))
+          .then(reviews => {
+               return recommendJeans(stats, reviews)
+               .then(recommendedJeans => res.send(recommendedJeans))
+          })
           .catch( error => res.status(400).send(error.toString() ));
      },
 
