@@ -11,8 +11,6 @@ app.use( logger( 'dev' ));
 app.use( bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false }));
 
-fillmeup.run( models, __dirname + '/server/seeders/seed_data' );
-
 require('./server/routes')(app);
 app.get('*', ( req, res ) => res.status( 200 ).send({
      message: 'Online jean shopping that\'s not a pain in the ass. Jeanius.',

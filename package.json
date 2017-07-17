@@ -4,7 +4,8 @@
   "description": "Jean Recommender API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "seed": "node ./server/seeders/seed.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "fillmeup-sequelize": "^1.1.2",
     "morgan": "^1.8.2",
     "pg": "^6.4.0",
     "pg-hstore": "^2.3.2",
