@@ -1,3 +1,6 @@
+const Review = require('../models').Review;
+const Jean = require('../models').Jean;
+
 var determineHeight = ( priority, height ) => {
      var heightRange = [];
      var length = 0;
@@ -89,8 +92,6 @@ var findJeans = ( queriedReviews, rating, stats, determineHeight, determineWeigh
 };
 
 var groupJeans = foundJeans => {
-     console.log( 'groupJeans: We made it!' );
-
      return foundJeans.reduce(( count, jeans ) => {
           var array = [
                ['jean_asin', jeans.jean_asin],
@@ -107,7 +108,7 @@ var scoreJeans = ( groupedJeans, numScoredJeans, scoredJeans, rating ) => {
      var arrayedJeans = Object.entries( groupedJeans );
      var scored = [];
 
-     arrayedJeans.forEach(( jeans ) => {
+     arrayedJeans.forEach( jeans  => {
           scored = ( jeans[0].split(',') );
           scored.push( 'mentions', jeans[1],'stars', jeans[1] * rating );
 
@@ -146,7 +147,7 @@ var sortJeans = scoredJeans => {
 }
 
 var recommendJeans = ( stats, reviews ) => {
-     var queriedReviews = [], foundJeans = [], groupedJeans = [], scoredJeans = [], numScoredJeans = [], sortedJeans = [];
+     var queriedReviews = [], foundJeans = [], groupedJeans = [], scoredJeans = [], numScoredJeans = [], sortedJeans = [], recommendedJeans = [];
      var rating = 5;
 
      for ( var i = 0; i < reviews.length; i++ ) {
@@ -162,7 +163,17 @@ var recommendJeans = ( stats, reviews ) => {
 
           --rating;
      }
-     return sortedJeans;
+
+     recommendedJeans = sortedJeans.forEach( sortedJean  => {
+          return Jean
+          .findById( sortedJean.jean_asin, {
+               include: [ Review ],
+          })
+          .then( jean => {
+               return jean })
+     });
+
+     return recommendedJeans;
 }
 
 module.exports = recommendJeans;
