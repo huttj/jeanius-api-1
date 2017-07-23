@@ -4,7 +4,7 @@
      "description": "Jean Recommender API",
      "main": "index.js",
      "scripts": {
-          "start": "./bin/www",
+          "start": "node ./bin/www",
           "seed": "node ./server/seeders/seed.js"
      },
      "repository": {
