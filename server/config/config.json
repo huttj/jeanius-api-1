@@ -14,10 +14,10 @@
           "dialect": "postgres"
      },
      "production": {
-          "username": "janice",
-          "password": null,
-          "database": "jeaniusdb",
-          "host": "127.0.0.1",
+          "username": ".env.RDS_USERNAME",
+          "password": ".env.RDS_PASSWORD",
+          "database": ".env.RDS_HOSTNAME",
+          "port": ".env.RDS_PORT",
           "dialect": "postgres"
      }
 }
