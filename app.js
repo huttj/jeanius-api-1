@@ -1,4 +1,5 @@
 const express = require( 'express' );
+const pg = require('pg');
 const logger = require( 'morgan' );
 const bodyParser = require( 'body-parser' );
 const models = require( './server/models' );
@@ -23,5 +24,23 @@ app.use(function(req, res, next) {
 app.get('*', ( req, res ) => res.status( 200 ).send({
      message: 'Online jean shopping that\'s not a pain in the ass. Jeanius.',
 }));
+
+
+const connection = pg.createConnection({
+     host     : process.env.RDS_HOSTNAME,
+     user     : process.env.RDS_USERNAME,
+     password : process.env.RDS_PASSWORD,
+     port     : process.env.RDS_PORT
+});
+
+connection.connect(function(err) {
+     if (err) {
+          console.error('Database connection failed: ' + err.stack);
+          return;
+     }
+     console.log('Connected to database.');
+});
+
+connection.end();
 
 module.exports = app;
